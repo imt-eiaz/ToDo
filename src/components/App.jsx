@@ -19,7 +19,7 @@ function App() {
 
   function deleteItem(id) {
     setItems((prevItems) => {
-      return prevItems.fill((item, index) => {
+      return prevItems.filter((item, index) => {
         return index !== id;
       });
     });
@@ -38,16 +38,14 @@ function App() {
       </div>
       <div>
         <ul>
-          {items.map((todoItem, index) => {
-            return (
-              <ToDoItem
-                key={index}
-                id={index}
-                text={todoItem}
-                onChecked={deleteItem}
-              />
-            );
-          })}
+          {items.map((todoItem, index) => (
+            <ToDoItem
+              key={index}
+              id={index}
+              text={todoItem}
+              onChecked={deleteItem}
+            />
+          ))}
         </ul>
       </div>
     </div>
