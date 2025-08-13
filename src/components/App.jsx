@@ -5,7 +5,7 @@ function App() {
   const [inputText, setInputText] = useState("");
   const [items, setItems] = useState([]);
 
-  function handleChange(event) {
+  function hanldeChange(event) {
     const newValue = event.target.value;
     setInputText(newValue);
   }
@@ -31,22 +31,29 @@ function App() {
         <h1>Todo List</h1>
       </div>
       <div className="form">
-        <input value={inputText} onChange={handleChange} type="text" />{" "}
+        <input
+          value={inputText}
+          onChange={hanldeChange}
+          type="text"
+          placeholder="Enter todo"
+        />
         <button onClick={addItem}>
           <span>Add</span>
         </button>
-      </div>
-      <div>
-        <ul>
-          {items.map((todoItem, index) => (
-            <ToDoItem
-              key={index}
-              id={index}
-              text={todoItem}
-              onChecked={deleteItem}
-            />
-          ))}
-        </ul>
+        <div>
+          <ul>
+            {items.map((todoItem, index) => {
+              return (
+                <ToDoItem
+                  key={index}
+                  id={index}
+                  text={todoItem}
+                  onChecked={deleteItem}
+                />
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </div>
   );
