@@ -5,7 +5,12 @@ import InputArea from "./inputArea";
 function App() {
   const [items, setItems] = useState([]);
 
-  function addItem(inputText) {
+  function handleChange(event) {
+    const newValue = event.target.value;
+    setInputText(newValue);
+  }
+
+  function addItem() {
     setItems((preValue) => {
       return [...preValue, inputText];
     });
@@ -24,19 +29,22 @@ function App() {
       <div className="heading">
         <h1>To Do List</h1>
       </div>
-      <InputArea onAdd={addItem} />
+      <div className="form">
+        <input value={inputText} onChange={handleChange} type="text" />{" "}
+        <button onClick={addItem}>
+          <span>Add</span>
+        </button>
+      </div>
       <div>
         <ul>
-          {items.map((todoItem, index) => {
-            return (
-              <ToDoItem
-                key={index}
-                id={index}
-                text={todoItem}
-                onChecked={deleteItem}
-              />
-            );
-          })}
+          {items.map((todoItem, index) => (
+            <ToDoItem
+              key={index}
+              id={index}
+              text={todoItem}
+              onChecked={deleteItem}
+            />
+          ))}
         </ul>
       </div>
     </div>
